@@ -3,7 +3,3 @@ description: >-
   Documentation for the ServiceMaster Restore Brand Location Data API —
   read and update a fixed set of fields on a Location entity.
 theme: minima
-
-# Minima's built-in dark skin.
-minima:
-  skin: dark
