@@ -1,0 +1,37 @@
+<style>
+  /* Syntax highlighting for fenced code blocks under Minima's dark skin.
+     GitHub Pages renders fenced blocks with Rouge, which wraps each token in
+     a span (.k keyword, .s string, .c comment, ...). This applies a
+     GitHub-dark token palette on top of the dark skin's code background.
+     custom-head.html is injected after Minima's stylesheet, so these win. */
+  .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs, .highlight .cd { color: #8b949e; font-style: italic; }
+
+  /* Keywords + operators */
+  .highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kt { color: #ff7b72; }
+  .highlight .o, .highlight .ow { color: #ff7b72; }
+
+  /* Constants: true / false / null, and numbers */
+  .highlight .kc, .highlight .no,
+  .highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il { color: #79c0ff; }
+
+  /* Strings */
+  .highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc,
+  .highlight .sd, .highlight .se, .highlight .sh, .highlight .si, .highlight .sx,
+  .highlight .sr, .highlight .dl { color: #a5d6ff; }
+
+  /* Names: functions, classes, builtins */
+  .highlight .nf, .highlight .nc, .highlight .nb, .highlight .bp { color: #d2a8ff; }
+
+  /* Tags / object keys (e.g. JSON property names) and attributes */
+  .highlight .nt { color: #7ee787; }
+  .highlight .na, .highlight .nl { color: #79c0ff; }
+
+  /* Variables */
+  .highlight .nv, .highlight .vg, .highlight .vi { color: #ffa657; }
+
+  /* Plain names and punctuation stay near the default light text */
+  .highlight .p, .highlight .nx, .highlight .n { color: #c9d1d9; }
+
+  /* Errors */
+  .highlight .err { color: #ffa198; background-color: transparent; }
+</style>
