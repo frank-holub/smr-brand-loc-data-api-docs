@@ -5,7 +5,7 @@ title: ServiceMaster Restore — Location Data API Docs
 
 This API enables an authorized external user or system to read and update a small, fixed set of fields on a ServiceMaster Restore Brand **Location** entity.
 
-## Endpoints
+## 1. Endpoints
 
 | Name | Purpose | Method(s) | Path | Authentication |
 | --- | --- | --- | --- | --- |
@@ -21,7 +21,7 @@ This API enables an authorized external user or system to read and update a smal
 
 ---
 
-## 1. Authentication
+## 2. Authentication
 
 ### Key Endpoint
 
@@ -37,7 +37,7 @@ The Location endpoint is authenticated with an API key. You must send the key in
 
 ---
 
-## 2. Getting your API key
+## 3. Getting your API key
 
 RDG will provide you with your username, password, and user id (uid). Use either path below to obtain your key.
 
@@ -64,18 +64,15 @@ echo -n "username:password" | base64
 
 <details>
 <summary>cURL</summary>
-
-```bash
+{% highlight bash %}
 curl --location '{base_url}/api/v1/user/{uid}?format=json' \
 --header 'Authorization: Basic <encoded_credentials>'
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>JS</summary>
-
-```js
+{% highlight javascript %}
 const headers = new Headers();
 headers.append("Authorization", "Basic <encoded_credentials>");
 
@@ -88,14 +85,12 @@ fetch("{base_url}/api/v1/user/{uid}?format=json", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>PHP</summary>
-
-```php
+{% highlight php %}
 // Using GuzzleHttp.
 $client = new Client();
 $headers = [
@@ -108,8 +103,7 @@ $request = new Request(
 );
 $response = $client->sendAsync($request)->wait();
 echo $response->getBody();
-```
-
+{% endhighlight %}
 </details>
 
 #### Expected Response (`200 OK`)
@@ -129,7 +123,7 @@ echo $response->getBody();
 
 ---
 
-## 3. Reading a location — GET
+## 4. Reading a location — GET
 
 ```
 GET /api/v1/location/{location_id}?_format=json
@@ -143,18 +137,15 @@ Accept: application/json
 
 <details>
 <summary>cURL</summary>
-
-```bash
+{% highlight bash %}
 curl -H "api-key: <your_key>" \
   "https://{base_url}/api/v1/location/{location_id}?_format=json"
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>JS</summary>
-
-```js
+{% highlight javascript %}
 const headers = new Headers();
 headers.append("api-key", "<your_key>");
 
@@ -167,14 +158,12 @@ fetch("http://{base_url}/api/v1/location/{location_id}?format=json", requestOpti
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>PHP</summary>
-
-```php
+{% highlight php %}
 // Using GuzzleHttp.
 $client = new Client();
 $headers = [
@@ -183,8 +172,7 @@ $headers = [
 $request = new Request('GET', 'http://{base_url}/api/v1/location/{location_id}?format=json', $headers);
 $response = $client->sendAsync($request)->wait();
 echo $response->getBody();
-```
-
+{% endhighlight %}
 </details>
 
 ### Expected Response (`200 OK`)
@@ -207,7 +195,7 @@ echo $response->getBody();
 
 ---
 
-## 4. Updating a location — PATCH
+## 5. Updating a location — PATCH
 
 ```
 PATCH /api/v1/location/{location_id}?_format=json
@@ -224,8 +212,7 @@ Accept: application/json
 
 <details>
 <summary>cURL</summary>
-
-```bash
+{% highlight bash %}
 curl --location --request PATCH 'http://{base_url}/api/v1/location/{location_id}?format=json' \
 --header 'Content-Type: application/json' \
 --header 'api-key: <your_key>' \
@@ -239,14 +226,12 @@ curl --location --request PATCH 'http://{base_url}/api/v1/location/{location_id}
         "postal_code": "12345"
     }
 }'
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>JS</summary>
-
-```js
+{% highlight javascript %}
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
 headers.append("api-key", "<your_key>");
@@ -271,14 +256,12 @@ fetch("http://{base_url}/api/v1/location/{location_id}?format=json", requestOpti
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
-```
-
+{% endhighlight %}
 </details>
 
 <details>
 <summary>PHP</summary>
-
-```php
+{% highlight php %}
 // Using GuzzleHttp.
 $client = new Client();
 $headers = [
@@ -297,8 +280,7 @@ $body = '{
 $request = new Request('PATCH', 'http://{base_url}/api/v1/location/{location_id}?format=json', $headers, $body);
 $response = $client->sendAsync($request)->wait();
 echo $response->getBody();
-```
-
+{% endhighlight %}
 </details>
 
 ### Expected Response (`200 OK`)
@@ -355,7 +337,7 @@ The response reads the merged result back:
 
 ---
 
-## 5. Writable fields
+## 6. Writable fields
 
 These are the only fields this API can read or write. No other field on a location, and no other content type, is reachable through it.
 
@@ -376,11 +358,11 @@ These are the only fields this API can read or write. No other field on a locati
 | `postal_code` | ZIP / postal code. |
 | `country_code` | Two-letter country code. Must be `US`. |
 
-Sending any top-level key other than the three above, or any address sub-key other than those listed, is rejected with `400` (see Section 6).
+Sending any top-level key other than the three above, or any address sub-key other than those listed, is rejected with `400` (see Section 7).
 
 ---
 
-## 6. Response codes
+## 7. Response codes
 
 | Status | Meaning |
 | --- | --- |
@@ -388,14 +370,14 @@ Sending any top-level key other than the three above, or any address sub-key oth
 | `400` | Bad request — an unknown field name, an unknown address sub-key, or a wrong value type. |
 | `401` | Missing or invalid credentials (no/invalid API key, or bad Basic Auth on the key endpoint). |
 | `403` | Authenticated, but not authorized for this action (e.g. requesting another user's key). |
-| `404` | No location exists for the given `{location_id}` (on the domain this request targets — see Section 7). |
+| `404` | No location exists for the given `{location_id}` (on the domain this request targets — see Section 8). |
 | `422` | The update failed validation (e.g. a `country_code` other than `US`). |
 
 Error responses include a JSON `message` describing the problem.
 
 ---
 
-## 7. Important notes
+## 8. Important notes
 
 - **Target the correct hostname.** A location is associated with a specific site domain. Calling the API on a different hostname than the location's assigned domain returns `404` even with a valid key and identifier.
 - **HTTPS is required.** Both the API key and (for the key endpoint) your password are sent in headers with no additional encryption of their own.
