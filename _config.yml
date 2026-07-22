@@ -1,0 +1,5 @@
+title: SMR Brand Location Data API
+description: >-
+  Documentation for the ServiceMaster Restore Brand Location Data API —
+  read and update a fixed set of fields on a Location entity.
+theme: minima
