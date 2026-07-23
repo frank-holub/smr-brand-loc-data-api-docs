@@ -33,8 +33,11 @@
   --border-strong: var(--smr-gray-75);
 
   --text: var(--smr-gray-05);
-  --muted: var(--smr-gray-45);
-  --faint: var(--smr-gray-55);
+  /* Muted/faint are lightened past the raw SMR grays (gray-45 #848484 / gray-55
+     #6e6e6e) so secondary text clears WCAG AA 4.5:1 on the --surface #222
+     sidebar as well as the #111 page (SMR grays only reach ~4.25 / ~3.1). */
+  --muted: #9a9a9a;
+  --faint: #8c8c8c;
 
   --accent: var(--smr-yellow);     /* brand identity: active indicator, brand mark, focus */
   --accent-rgb: 255, 238, 80;      /* --accent channels, for translucent tints */
@@ -338,7 +341,8 @@ code { font-family: var(--mono); font-size: .875em; }
 .highlight .na, .highlight .nl { color: #79c0ff; }
 .highlight .nv, .highlight .vg, .highlight .vi { color: #ffa657; }
 .highlight .p, .highlight .w, .highlight .n, .highlight .nx { color: #c9d1d9; }
-.highlight .err { color: var(--danger); background: transparent; }
+/* Brightened past --danger #ff3838 (only 4.45:1 on the code panel) to clear AA. */
+.highlight .err { color: #ff6b6b; background: transparent; }
 
 /* --------------------------------------------------------------------------
    Collapsible code examples
