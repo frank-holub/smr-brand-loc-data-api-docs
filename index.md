@@ -142,7 +142,7 @@ Accept: application/json
 
 `{location_id}` is the location's business identifier (its `field_loc_id` value). RDG will confirm the identifier scheme for your locations.
 
-### Code Examples
+#### Code Examples
 
 <details>
 <summary>cURL</summary>
@@ -184,7 +184,7 @@ echo $response->getBody();
 {% endhighlight %}
 </details>
 
-### Expected Response (`200 OK`)
+#### Expected Response (`200 OK`)
 
 ```json
 {
@@ -217,7 +217,7 @@ Accept: application/json
 
 `PATCH` is a **partial update**: only the top-level fields you include in the body are changed. Any field you omit is left exactly as it was.
 
-### Code Examples
+#### Code Examples
 
 <details>
 <summary>cURL</summary>
@@ -292,7 +292,7 @@ echo $response->getBody();
 {% endhighlight %}
 </details>
 
-### Expected Response (`200 OK`)
+#### Expected Response (`200 OK`)
 
 Echoes back only the field(s) that changed, plus a confirmation.
 
