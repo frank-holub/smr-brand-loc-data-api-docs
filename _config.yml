@@ -2,4 +2,6 @@ title: SMR Brand Location Data API
 description: >-
   Documentation for the ServiceMaster Restore Brand Location Data API —
   read and update a fixed set of fields on a Location entity.
-theme: minima
+
+# Themeless: the doc-wiki layout and styles live in _layouts/ and assets/.
+# (GitHub Pages' Minima 2.5.1 has no sidebar/skin support — see assets/style.css.)

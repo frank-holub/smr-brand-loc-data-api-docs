@@ -1,11 +1,20 @@
 ---
-layout: page
+layout: default
 title: ServiceMaster Restore — Location Data API Docs
+sections:
+  - { id: endpoints,      title: Endpoints }
+  - { id: authentication, title: Authentication }
+  - { id: api-key,        title: Getting your API key }
+  - { id: read,           title: Reading a location, tag: GET }
+  - { id: update,         title: Updating a location, tag: PATCH }
+  - { id: fields,         title: Writable fields }
+  - { id: response-codes, title: Response codes }
+  - { id: notes,          title: Important notes }
 ---
 
 This API enables an authorized external user or system to read and update a small, fixed set of fields on a ServiceMaster Restore Brand **Location** entity.
 
-## 1. Endpoints
+## 1. Endpoints {#endpoints}
 
 | Name | Purpose | Method(s) | Path | Authentication |
 | --- | --- | --- | --- | --- |
@@ -21,7 +30,7 @@ This API enables an authorized external user or system to read and update a smal
 
 ---
 
-## 2. Authentication
+## 2. Authentication {#authentication}
 
 ### Key Endpoint
 
@@ -37,7 +46,7 @@ The Location endpoint is authenticated with an API key. You must send the key in
 
 ---
 
-## 3. Getting your API key
+## 3. Getting your API key {#api-key}
 
 RDG will provide you with your username, password, and user id (uid). Use either path below to obtain your key.
 
@@ -123,7 +132,7 @@ echo $response->getBody();
 
 ---
 
-## 4. Reading a location — GET
+## 4. Reading a location — GET {#read}
 
 ```
 GET /api/v1/location/{location_id}?_format=json
@@ -195,7 +204,7 @@ echo $response->getBody();
 
 ---
 
-## 5. Updating a location — PATCH
+## 5. Updating a location — PATCH {#update}
 
 ```
 PATCH /api/v1/location/{location_id}?_format=json
@@ -337,7 +346,7 @@ The response reads the merged result back:
 
 ---
 
-## 6. Writable fields
+## 6. Writable fields {#fields}
 
 These are the only fields this API can read or write. No other field on a location, and no other content type, is reachable through it.
 
@@ -362,7 +371,7 @@ Sending any top-level key other than the three above, or any address sub-key oth
 
 ---
 
-## 7. Response codes
+## 7. Response codes {#response-codes}
 
 | Status | Meaning |
 | --- | --- |
@@ -377,7 +386,7 @@ Error responses include a JSON `message` describing the problem.
 
 ---
 
-## 8. Important notes
+## 8. Important notes {#notes}
 
 - **Target the correct hostname.** A location is associated with a specific site domain. Calling the API on a different hostname than the location's assigned domain returns `404` even with a valid key and identifier.
 - **HTTPS is required.** Both the API key and (for the key endpoint) your password are sent in headers with no additional encryption of their own.
