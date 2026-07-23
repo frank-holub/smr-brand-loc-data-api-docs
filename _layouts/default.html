@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <input type="checkbox" id="nav-toggle" class="nav-cb" aria-label="Toggle section menu">
 
   <header class="topbar">
@@ -43,7 +44,7 @@
     <div class="sidebar-foot"><span class="dot"></span> API v1 · JSON</div>
   </aside>
 
-  <main class="content">
+  <main class="content" id="main" tabindex="-1">
     <article class="doc">
       <header class="doc-header">
         <p class="eyebrow">API Reference</p>

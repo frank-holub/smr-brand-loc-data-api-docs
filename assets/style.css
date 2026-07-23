@@ -5,26 +5,43 @@
 /* ==========================================================================
    SMR Location Data API — documentation wiki
    Themeless, mobile-first. Base rules target mobile; the persistent sidebar
-   is layered on at >=900px. Brand green is the identity accent; monospace is
-   the character face (this is an API reference — code is the subject).
+   is layered on at >=900px. SMR brand yellow is the identity accent, teal is
+   the highlight/link color; monospace is the character face (this is an API
+   reference — code is the subject).
    ========================================================================== */
 
 :root {
-  --bg: #0b0f14;
-  --surface: #0e141b;      /* sidebar / details */
-  --panel: #121a23;        /* code blocks, table headers */
-  --border: #1e2733;
-  --border-strong: #2b3644;
+  /* SMR brand palette — from smr_brand theme: libraries/_base_sass/_variables.scss */
+  --smr-yellow:  #FFEE50;
+  --smr-teal:    #00A0AF;
+  --smr-gray-05: #f5f5f5;
+  --smr-gray-20: #d2d2d2;
+  --smr-gray-45: #848484;
+  --smr-gray-55: #6e6e6e;
+  --smr-gray-75: #464646;
+  --smr-gray-80: #333333;
+  --smr-gray-85: #222222;
+  --smr-gray-90: #111111;
+  --smr-black:   #000000;
+  --smr-white:   #ffffff;
 
-  --text: #d5dde7;
-  --muted: #8994a4;
-  --faint: #5b6675;
+  /* Dark-mode roles (brand dark theme: #111 bg / #f5f5f5 text / teal links) */
+  --bg: var(--smr-gray-90);
+  --surface: var(--smr-gray-85);   /* sidebar / details */
+  --panel: var(--smr-gray-85);     /* code blocks, table headers */
+  --border: var(--smr-gray-80);
+  --border-strong: var(--smr-gray-75);
 
-  --accent: #00843d;       /* ServiceMaster Restore brand green (solid fills) */
-  --accent-2: #3fb950;     /* legible green for text / active states */
-  --accent-2-rgb: 63, 185, 80;   /* --accent-2 channels, for translucent tints */
-  --link: #62b0ff;
-  --danger: #ffa198;
+  --text: var(--smr-gray-05);
+  --muted: var(--smr-gray-45);
+  --faint: var(--smr-gray-55);
+
+  --accent: var(--smr-yellow);     /* brand identity: active indicator, brand mark, focus */
+  --accent-rgb: 255, 238, 80;      /* --accent channels, for translucent tints */
+  --accent-2: var(--smr-teal);     /* highlights: links, eyebrows, markers */
+  --accent-2-rgb: 0, 160, 175;     /* --accent-2 channels, for translucent tints */
+  --link: var(--smr-teal);
+  --danger: #ff3838;               /* $error-color */
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -50,8 +67,25 @@ body {
 
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 2px; }
+/* Prose links stay underlined so they aren't distinguished by color alone (WCAG 1.4.1). */
+.doc a { text-decoration: underline; text-underline-offset: 2px; }
 
-:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+/* Skip link (WCAG 2.4.1 Bypass Blocks) — off-screen until focused. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -120px;
+  z-index: 100;
+  padding: .55rem .9rem;
+  background: var(--accent);
+  color: var(--smr-gray-90);
+  font-weight: 700;
+  border-radius: 8px;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 8px; }
 
 /* --------------------------------------------------------------------------
    Drawer toggle (CSS-only so it works without JS; JS only enhances it)
@@ -86,7 +120,7 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
   color: var(--text);
 }
 .menu-btn:hover { background: var(--panel); }
-.nav-cb:focus-visible ~ .topbar .menu-btn { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+.nav-cb:focus-visible ~ .topbar .menu-btn { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .menu-icon, .menu-icon::before, .menu-icon::after {
   content: "";
@@ -111,7 +145,7 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
   font-weight: 700;
   font-size: .78rem;
   letter-spacing: .06em;
-  color: #fff;
+  color: var(--smr-gray-90);
   background: var(--accent);
   padding: .12rem .4rem;
   border-radius: 5px;
@@ -199,11 +233,11 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
   padding: .05rem .3rem;
 }
 .toc a.is-active {
-  background: rgba(var(--accent-2-rgb), .10);
-  color: #fff;
+  background: rgba(var(--accent-rgb), .14);
+  color: var(--smr-white);
   border-left-color: var(--accent);
 }
-.toc a.is-active .toc-num { color: var(--accent-2); }
+.toc a.is-active .toc-num { color: var(--accent); }
 
 .sidebar-foot {
   margin-top: 1.2rem;
@@ -261,7 +295,7 @@ a:hover { text-decoration: underline; text-underline-offset: 2px; }
 .doc ul, .doc ol { padding-left: 1.35em; }
 .doc li { margin: .35rem 0; }
 .doc li > ul, .doc li > ol { margin: .35rem 0; }
-.doc strong { color: #e8eef6; }
+.doc strong { color: var(--smr-white); }
 
 .doc hr { display: none; } /* h2 top-borders already divide the sections */
 
@@ -273,7 +307,7 @@ code { font-family: var(--mono); font-size: .875em; }
   border: 1px solid var(--border);
   border-radius: 5px;
   padding: .1em .38em;
-  color: #cad6e6;
+  color: var(--text);
   white-space: nowrap;
 }
 
@@ -360,7 +394,7 @@ code { font-family: var(--mono); font-size: .875em; }
   text-align: left;
   vertical-align: top;
 }
-.doc th { background: var(--panel); color: #e6edf5; font-weight: 600; white-space: nowrap; }
+.doc th { background: var(--panel); color: var(--text); font-weight: 600; white-space: nowrap; }
 .doc tbody tr:nth-child(even) { background: rgba(255, 255, 255, .02); }
 
 /* --------------------------------------------------------------------------
@@ -369,8 +403,8 @@ code { font-family: var(--mono); font-size: .875em; }
 .doc blockquote {
   margin: 1.2rem 0;
   padding: .2rem 1rem;
-  border-left: 3px solid var(--accent);
-  background: rgba(var(--accent-2-rgb), .06);
+  border-left: 3px solid var(--accent-2);
+  background: rgba(var(--accent-2-rgb), .08);
   border-radius: 0 8px 8px 0;
   color: var(--text);
 }
